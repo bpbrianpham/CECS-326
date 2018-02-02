@@ -11,7 +11,7 @@ int main ()
     int pointSize[20];
     char *pointer[20];
 
-    for (int i = 0; i < (sizeof(pointSize)/sizeof(pointSize[0]); i++)
+    for (int i = 0; i < (sizeof(pointSize)/sizeof(pointSize[0])); i++)
     {
         pointSize[i] = recurseEquation(i);
     }
