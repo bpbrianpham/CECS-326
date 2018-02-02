@@ -2,7 +2,7 @@
 #include <stdlib.h>
 using namespace std;
 
-int recurseEquation(int)
+int recurseEquation(int);
 
 int main ()
 {
