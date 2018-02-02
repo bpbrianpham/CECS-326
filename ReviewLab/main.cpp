@@ -58,7 +58,7 @@ int main ()
             }
             case 4: {
                 cout << "Ending Program....";
-                for(int i = 0; i < (sizeof(pointSize)/sizeof(pointSize[0]); i++){
+                for(int i = 0; i < (sizeof(pointSize)/sizeof(pointSize[0])); i++){
                     delete pointer[i];
                 }
                 delete[] pointer;
