@@ -1,0 +1,42 @@
+Chapter 1
+
+	what is an OS -	a program that acts as an intermediary btwn a user of a computer and the computer 
+			hardware
+	--->> users 	
+	--->> application layer (spreadsheet/browser/etc)* 
+	--->> system software layer (command line interpreter / compiler)*
+		*Application programes <defines the ways in which the system resources are used to solve
+			the computing problems of the users
+	--->> Operating System (O.S.) < controls and coordinates use of hardware among various apps & users>
+	--->> Hardware <provides basic computing resources>			
+
+	OS goals
+		execute user programs and make solving user problems easier 
+		make computer system convenient to use
+		use the computer hardware in an efficient manner
+
+	OS is a resource manager
+		ex: if a CPU is needed, its the OS that ALLOCATES the CPU
+
+	Computer system structure
+
+
+	Caching
+		when found incache, we save time by not having to look in slower device
+		data often found in cache tends to be the most frequently used data
+		cache hit is fastest
+		cache miss means that you need to look in the slower device
+
+Direct Memory Access (DMA) Structure
+	key: speeds up computer operations
+
+OS Structure
+	Multiprogramming or Batch system:
+		time multiplexing - jobs take turns using the cpu
+		this strategy would produce a higher throughput (more tasks completed per unit time)
+	Timesharing or multitasking
+		response time is important
+		realize that each environment has its own set of requirement
+
+OS Operations
+	
