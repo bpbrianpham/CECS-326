@@ -6,6 +6,8 @@ int main ()
 {
     string mainMenu = "(1) Access a pointer \n(2) List deallocated memory (index) \n(3) Deallocate all memory \n(4) Exit Program";
     bool cont = true;
+    int pointSize[20];
+    char *pointer[20];
 
     int choice;
     while(cont){
@@ -49,6 +51,10 @@ int main ()
             }
             case 4: {
                 cout << "Ending Program....";
+                for(int i = 0; i < sizeof(pointSize); i++){
+                    delete pointer[i];
+                }
+                delete[] pointer;
                 cont = false;
                 break;
             }
