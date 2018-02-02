@@ -1,3 +1,8 @@
+brianpham@97.94.168.77
+
+
+
+
 Chapter 1
 
 	what is an OS -	a program that acts as an intermediary btwn a user of a computer and the computer 
@@ -39,4 +44,10 @@ OS Structure
 		realize that each environment has its own set of requirement
 
 OS Operations
+
+I/O subsystem
+	simplify the computing environment
+		also: making the environment more uniform
+	buffering- speeds up computing
+		transfers data across hardware components which operate at different speed
 	
