@@ -112,7 +112,7 @@ int main()
                                     ptrChar[decisionValue-1] = new char[arrayInteger[decisionValue-1]];
                                     for (int j = 0; j < arrayInteger[decisionValue-1]; j++)
                                     {
-                                        ptrChar[decisionValue-1][j] = alphabet[rand()%26];
+                                        ptrChar[decisionValue-1][j] = char(rand()%26 + 97);
                                     }
                                 }
                             }
