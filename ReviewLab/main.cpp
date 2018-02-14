@@ -13,14 +13,15 @@ bool validateInput(string);
 int main()
 {
     // Setup variables
-    bool menuStatus = true;     //main menu ends or not
-    bool subMenuStatus;         //sub menu ends or not
-    bool pointerAccessMenu;     //inside the sub menu option ends or not
-    string decision;            //user description
-    int arrayInteger[20];       //setting up the array for numbers of 
-    char* ptrChar[20];          //setting up the character array 
-    int rand();                 //random
-    srand (time(NULL));         //time set
+    int arraySize = 20;             //set array size to 20
+    bool menuStatus = true;         //main menu ends or not
+    bool subMenuStatus;             //sub menu ends or not
+    bool pointerAccessMenu;         //inside the sub menu option ends or not
+    string decision;                //user description
+    int arrayInteger[arraySize];    //setting up the array for numbers of 
+    char* ptrChar[arraySize];       //setting up the character array 
+    int rand();                     //random
+    srand (time(NULL));             //time set
     
 
     // setting up the arrays
