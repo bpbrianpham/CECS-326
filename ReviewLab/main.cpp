@@ -31,7 +31,7 @@ int main()
         ptrChar[i] = new char[arrayInteger[i]];
         for (int j = 0; j < arrayInteger[i]; j++)
         {
-            ptrChar[i][j] = char(rand()%26 + 97);
+            ptrChar[i][j] = char(rand()%26 + 65);
         }
     }
     
