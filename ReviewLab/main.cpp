@@ -139,7 +139,7 @@ int main()
                     cout << "Deallocated Memory:";
                     for (int i=0; i < arraySize; i++)
                     {
-                        cout << "\n\t" << i+1 << ". " << &ptrChar[i];
+                        cout << "\n\t" << i+1 << ". " << &ptrChar[i] << ("\tNULL" ? ptrChar[i] == NULL);
                     }
                     cout << "\n\n";
                     break;
