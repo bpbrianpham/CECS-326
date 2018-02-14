@@ -107,8 +107,8 @@ int main()
                                 }
                                 else
                                 {
-                                    cout << "The pointer at index " << decisionValue << " contains: NULL Char" <<endl;
-                                    cout << "Reinitializing the Char now....\n" << endl;
+                                    cout << "Currently there is nothing in index value " << decisionValue << endl;
+                                    cout << "Starting to refill all chars now ..... \n" << endl;
                                     ptrChar[decisionValue-1] = new char[arrayInteger[decisionValue-1]];
                                     for (int j = 0; j < arrayInteger[decisionValue-1]; j++)
                                     {
