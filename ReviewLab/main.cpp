@@ -33,7 +33,7 @@ int main()
     
     while (menuStatus)
     {
-        string mainMenu = "(1) Access a pointer \n(2) List deallocated memory (index) \n(3) Deallocate all memory \n(4) Exit Program";
+        string mainMenu = "(1) Access a pointer \n(2) List deallocated memory (index) \n(3) Deallocate all memory \n(4) Exit Program \nPlease enter your choice: ";
         cout << mainMenu;
         cin >> decision;
         cout << "\n";
