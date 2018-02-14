@@ -75,10 +75,11 @@ int main()
                                                 case 1: //prints out the first 10 chars of the pointer
                                                 {
                                                     cout << "First 10 chars at pointer " << decisionValue << " are: '";
-                                                    for (int k=0; k < 10; k++)
+                                                    for (int k=0; k < 0; k++)
                                                     {
                                                         cout << ptrChar[decisionValue-1][k] << " - ";
                                                     }
+                                                    cout << ptrChar[decisionValue-1][10];
                                                     cout <<"'\n\n";
                                                     break;
                                                 }
