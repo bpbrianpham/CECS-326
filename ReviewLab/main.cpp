@@ -1,3 +1,7 @@
+// Brian Pham
+// main.cpp
+// 
+
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
@@ -8,19 +12,18 @@ bool validateInput(string);
 
 int main()
 {
-    // Initial Setup of the Program
-    int arraySize = 20;
-    bool menuStatus = true;
-    bool subMenuStatus;
-    bool pointerAccessMenu;
-    string decision;
-    int arrayInteger[arraySize];
-    char* ptrChar[arraySize];
-    int rand();
-    srand (time(NULL));
+    // Setup variables
+    bool menuStatus = true;     //main menu ends or not
+    bool subMenuStatus;         //sub menu ends or not
+    bool pointerAccessMenu;     //inside the sub menu option ends or not
+    string decision;            //user description
+    int arrayInteger[20];       //setting up the array for numbers of 
+    char* ptrChar[20];          //setting up the character array 
+    int rand();                 //random
+    srand (time(NULL));         //time set
     
 
-    // Initializing all the memory and assigning Characters to ptrChar based off arrayInteger's size
+    // setting up the arrays
     for (int i = 0; i < arraySize; i++)
     {
         arrayInteger[i] = recursiveFunction(i);
@@ -31,6 +34,7 @@ int main()
         }
     }
     
+    //start of the menu
     while (menuStatus)
     {
         string mainMenu = "(1) Access a pointer \n(2) List deallocated memory (index) \n(3) Deallocate all memory \n(4) Exit Program \nPlease enter your choice: ";
@@ -43,7 +47,7 @@ int main()
             int decisionValue = stoi(decision);
             switch (decisionValue)
             {
-                case 1:
+                case 1: //accessing specific pointers
                 {
                     while (subMenuStatus)
                     {
@@ -67,32 +71,32 @@ int main()
                                         {
                                             switch (stoi(decision))
                                             {
-                                                case 1:
+                                                case 1: //prints out the first 10 chars of the pointer
                                                 {
-                                                    cout << "First 10 Chars at Pointer " << decisionValue << " are: '";
+                                                    cout << "First 10 chars at pointer " << decisionValue << " are: '";
                                                     for (int k=0; k < 10; k++)
                                                     {
-                                                        cout << ptrChar[decisionValue-1][k];
+                                                        cout << ptrChar[decisionValue-1][k] << " - ";
                                                     }
                                                     cout <<"'\n\n";
                                                     break;
                                                 }
-                                                case 2:
+                                                case 2: //deletes all chars at the pointer and returns user to the main page
                                                 {
-                                                    cout << "Deleting all Char at Pointer "<<decisionValue<<"\nReturning to Main Menu\n"<<endl;
+                                                    cout << "Deleting all char at pointer "<<decisionValue<<"\n..... Going back to the main menu ....\n"<<endl;
                                                     ptrChar[decisionValue-1] = NULL;
                                                     pointerAccessMenu = false;
                                                     subMenuStatus = false;
                                                     break;
                                                 }
-                                                case 3:
+                                                case 3: //goes back to the main page
                                                 {
                                                     cout << "\n";
                                                     pointerAccessMenu = false;
                                                     subMenuStatus = false;
                                                     break;
                                                 }
-                                                default:
+                                                default: //for all other values
                                                 {
                                                     cout << "Invalid Input!!! Please enter 1 - 3"<<endl;
                                                     break;
@@ -128,7 +132,7 @@ int main()
                     }
                     break;
                 }
-                case 2:
+                case 2: //printing a list of memories that has null as memory
                 {
                     cout << "Deallocated Memory:";
                     for (int i=0; i < arraySize; i++)
@@ -138,7 +142,7 @@ int main()
                     cout << "\n\n";
                     break;
                 }
-                case 3:
+                case 3: //deleting all memory
                 {
                     cout << "Deallocating All Memory......\n" << endl;
                     for (int i=0; i < arraySize; i++)
@@ -147,7 +151,7 @@ int main()
                     }
                     break;
                 }
-                case 4:
+                case 4: //ends the program
                 {
                     cout << "Exiting Program...." << endl;
                     for (int i = 0; i < (sizeof(arrayInteger)/sizeof(arrayInteger[0])); ++i)
@@ -157,7 +161,7 @@ int main()
                     menuStatus = false;
                     break;
                 }
-                default: 
+                default: //for all other outputs
                 {
                     cout << "Invalid input!!! please choose one of the 4 options!" << endl;
                     break;
@@ -173,8 +177,8 @@ int main()
     }
 }
 
-/*--------------------------------------------*/
-// Given recursive function
+
+// using the given equation provided
 int recursiveFunction(int i)
 {
     if (i == 0)
@@ -187,7 +191,7 @@ int recursiveFunction(int i)
     }
 }
 
-// Decision validation function
+// Determines if the choice is a digit or letter
 bool validateInput(string input)
 {
     for (int i = 0; i < input.length(); i++)
