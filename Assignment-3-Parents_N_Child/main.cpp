@@ -34,7 +34,8 @@ int main(){
     }
 
     while(true){
-        cout << text << endl;
+        cout << "==================================A random article===============================================\n" << endl;
+        cout << text << endl << endl;
         cout << "Enter the word you would like to replace (To quit press !q): ";
         cin >> target;
         if (target == "!q"){
@@ -78,7 +79,8 @@ void swapWord(string target, string newWord){
         cout << "Unable to open file" << endl;
     }
 
-    cout << "==================================A random article===============================================\n" << endl;
+    cout << "\n==================================The new article===============================================\n" << endl;
     cout << text;
-    cout << "Number of swaps: " << swaps << endl;
+    cout << "Number of swaps: " << swaps << endl << endl;
+    cout << "=================================================================================================\n" << endl;
 }
