@@ -70,6 +70,7 @@ void swapWord(string target, string newWord){
         while(getline(inFile, line)){
             while (line.find(target) != string::npos){
                 line.replace(line.find(target), target.size(), newWord);
+                swaps++;
             }
             text = text + "\n" + line;
         }
