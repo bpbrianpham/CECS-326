@@ -26,7 +26,13 @@ int main(){
         cout << "Unable to open file" << endl;
     }
 
+    string target;
+    string newWord;
+    cout << "Enter the word you would like to replace: ";
+    cin >> target;
 
+    cout << "Enter what word you want to replace <" << target << "> with: ";
+    cin >> newWord;
     
 
     return 0;
