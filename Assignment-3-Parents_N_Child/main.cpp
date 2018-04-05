@@ -3,10 +3,11 @@
 #include <cstdlib>
 #include <time.h>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
-string swapWord(string, string, string);
+void swapWord(string, string, string);
 
 int main(){
 
@@ -43,13 +44,36 @@ int main(){
         cout << "Enter what word you want to replace <" << target << "> with: ";
         cin >> newWord;
 
-        text = swapWord(text, target, newWord);
-        cout << text;
+        childID = fork();
+        if(childID == 0){
+            swapWord(target, newWord);
+            exit(1);
+        }
+        wait(0);
+
     }
     inFile.close();
     return 0;
 }
 
-string swapWord(string text, string target, string newWord){
-    
+void swapWord(string target, string newWord){
+    string text = "";
+    int swaps = 0;
+
+    if(inFile.is_open()){
+        while(getline(inFile, line)){
+            while (line.find(target) != string::npos){
+                line.replace(line.find(target), target.size(), newWord);
+            }
+            text = text + "\n" + line;
+        }
+        inFile.close();
+    }
+    else{
+        cout << "Unable to open file" << endl;
+    }
+
+    cout << "==================================A random article===============================================\n" << endl;
+    cout << text;
+    cout << "Number of swaps: " << swaps << endl;
 }
