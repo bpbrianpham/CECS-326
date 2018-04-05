@@ -44,13 +44,15 @@ int main(){
         cout << "Enter what word you want to replace <" << target << "> with: ";
         cin >> newWord;
 
+        swapWord(target, newWord);
+        /*
         childID = fork();
         if(childID == 0){
             swapWord(target, newWord);
             exit(1);
         }
         wait(0);
-
+*/
     }
     inFile.close();
     return 0;
@@ -59,7 +61,10 @@ int main(){
 void swapWord(string target, string newWord){
     string text = "";
     int swaps = 0;
+    string line;
 
+    ifstream inFile;
+    inFile.open("randomArticle.txt");
     if(inFile.is_open()){
         while(getline(inFile, line)){
             while (line.find(target) != string::npos){
