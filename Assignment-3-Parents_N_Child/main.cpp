@@ -34,7 +34,7 @@ int main(){
     }
 
     while(true){
-        cout << text;
+        cout << text << endl;
         cout << "Enter the word you would like to replace (To quit press !q): ";
         cin >> target;
         if (target == "!q"){
