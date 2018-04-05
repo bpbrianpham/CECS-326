@@ -19,7 +19,7 @@ int main(){
 
     if(inFile.is_open()){
         while(getline(inFile, line)){
-            text = text + "\n";
+            text = text + "\n" + line;
             cout << line << endl;
         }
         inFile.close();
