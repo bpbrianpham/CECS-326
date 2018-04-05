@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void swapWord(string, string, string);
+void swapWord(string, string);
 
 int main(){
 
