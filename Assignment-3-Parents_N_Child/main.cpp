@@ -14,7 +14,7 @@ int main(){
     
     ifstream inFile;
     string line;
-    inFile.open("../randomArticle.txt");
+    inFile.open("randomArticle.txt");
 
     if(inFile.is_open()){
         while(getline(inFile, line)){
