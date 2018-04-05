@@ -14,10 +14,12 @@ int main(){
     
     ifstream inFile;
     string line;
+    string text;
     inFile.open("randomArticle.txt");
 
     if(inFile.is_open()){
         while(getline(inFile, line)){
+            text = text + "\n";
             cout << line << endl;
         }
         inFile.close();
@@ -33,6 +35,8 @@ int main(){
 
     cout << "Enter what word you want to replace <" << target << "> with: ";
     cin >> newWord;
+
+    cout << text;
     
 
     return 0;
