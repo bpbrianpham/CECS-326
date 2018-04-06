@@ -4,6 +4,7 @@
 #include <time.h>
 #include <fstream>
 #include <sstream>
+#include <stdio.h>
 
 using namespace std;
 
@@ -44,16 +45,14 @@ int main(){
         }
         cout << "Enter what word you want to replace <" << target << "> with: ";
         cin >> newWord;
-
-        swapWord(target, newWord);
-        /*
+        
         childID = fork();
         if(childID == 0){
             swapWord(target, newWord);
             exit(1);
         }
-        wait(0);
-*/
+        sleep(NULL);
+
     }
     inFile.close();
     return 0;
