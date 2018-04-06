@@ -41,7 +41,7 @@ int main(){
         cin >> target;
         if (target == "!q"){
             cout << "Ending program." << endl;
-            exit(1);
+            exit(0);
         }
         cout << "Enter what word you want to replace <" << target << "> with: ";
         cin >> newWord;
@@ -49,7 +49,7 @@ int main(){
         childID = fork();
         if(childID == 0){
             swapWord(target, newWord);
-            exit(1);
+            exit(0);
         }
         sleep(NULL);
 
