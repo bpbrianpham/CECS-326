@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unistd.h>
+#include <sys/wait.h>
 #include <cstdlib>
 #include <time.h>
 #include <fstream>
@@ -45,13 +46,13 @@ int main(){
         }
         cout << "Enter what word you want to replace <" << target << "> with: ";
         cin >> newWord;
-        
+
         childID = fork();
         if(childID == 0){
             swapWord(target, newWord);
             exit(0);
         }
-        wait(&NULL);
+        wait(NULL);
 
     }
     inFile.close();
