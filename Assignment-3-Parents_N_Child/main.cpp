@@ -51,7 +51,7 @@ int main(){
             swapWord(target, newWord);
             exit(0);
         }
-        sleep(NULL);
+        sleep(&NULL);
 
     }
     inFile.close();
