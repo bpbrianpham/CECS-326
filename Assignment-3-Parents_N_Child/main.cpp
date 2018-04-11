@@ -67,12 +67,16 @@ void swapWord(string target, string newWord){
     ifstream inFile;
     inFile.open("randomArticle.txt");
     if(inFile.is_open()){
-        while(getline(inFile, line)){
-            while (line.find(target) != string::npos){
-                line.replace(line.find(target), target.size(), newWord);
-                swaps++;
+        while(swaps == 0){
+            while(getline(inFile, line)){
+                while (line.find(target) != string::npos){
+                    line.replace(line.find(target), target.size(), newWord);
+                    swaps++;
+                }
+                text = text + "\n" + line;
             }
-            text = text + "\n" + line;
+            if(swaps == 0)
+                cout << ". . ." << endl;
         }
         inFile.close();
     }
