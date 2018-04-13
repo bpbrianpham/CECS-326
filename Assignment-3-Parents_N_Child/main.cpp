@@ -40,7 +40,7 @@ int main(){
         cout << text << endl << endl;
         cout << "Enter the word you would like to replace (To quit press !wq): ";
         cin >> target;
-        if (target == "!q"){
+        if (target == "!wq"){
             cout << "Ending program." << endl;
             exit(0);
         }
