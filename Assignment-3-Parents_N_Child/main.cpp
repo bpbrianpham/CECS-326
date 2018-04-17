@@ -14,9 +14,9 @@ void swapWord(string, string);
 int main(){
 
     
-    cout << "\n====================Parents and Child Processes a CECS 326 Project===============================\n" << endl;
-    cout << "=================================================================================================\n" << endl;
-    cout << "==================================A random article===============================================\n" << endl;
+    cout << "\n\t\t\tParents and Child Processes a CECS 326 Project\t\t\t\n" << endl;
+    cout << "\n\t\t\t==============================================\t\t\t\n" << endl;
+    cout << "\n\t\t\t============A random article==================\t\t\t\n" << endl;
     long childID;
     ifstream inFile;
     string line;
@@ -84,8 +84,8 @@ void swapWord(string target, string newWord){
         cout << "Unable to open file" << endl;
     }
 
-    cout << "\n==================================The new article===============================================\n" << endl;
+    cout << "\n\t\t\t============The New Article==================\t\t\t\n" << endl;
     cout << text << endl << endl;
     cout << "Number of swaps: " << swaps << endl << endl;
-    cout << "=================================================================================================\n" << endl;
+    cout << "\n\t\t\t=============================================\t\t\t\n" << endl;
 }
