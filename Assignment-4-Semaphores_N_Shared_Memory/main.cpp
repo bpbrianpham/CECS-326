@@ -14,7 +14,6 @@ using namespace std;
 
 const int MAXCHAR = 10;
 const int BUFFSIZE = 3;
-
 enum {PUT_ITEM, TAKE_ITEM}; // set up names of my 2 semaphores
 
 void producer_proc(SEMAPHORE &, char *);
@@ -30,22 +29,9 @@ int main(){
 	sem.V(PUT_ITEM);
 	sem.V(PUT_ITEM); // PUT_ITEM = 3 
 
-	//shmget = allocate function     IPC_PRIVATE = replace ftok(".",'u') (Now programmer doesnt tell what key to use, IPC_PRIVATE will use random key)
-	shmid = shmget(IPC_PRIVATE, BUFFSIZE*sizeof(char), PERMS); // Setting up shared memory
-	shmBUF = (char *)shmat(shmid, 0, SHM_RND); // Attach to allocated shm.
 
-	// When forking here, child have all of parent's variable including the same pointer to same memory (shared memeory)
-	if(fork()){ /* parent process */
-
-		producer_proc(sem, shmBUF);
-		parent_cleanup(sem, shmid);
-
-	} else { // child process
-		consumer_proc(sem, shmBUF);
-	}
-
-	exit(0);
-} // main
+    exit(0);
+}
 
 void consumer_proc(SEMAPHORE &sem, char *shmBUF) {
 	char tmp;
@@ -82,4 +68,3 @@ void parent_cleanup (SEMAPHORE &sem, int shmid) {
 	shmctl(shmid, IPC_RMID, NULL);	/* cleaning up */
 	sem.remove();
 } // parent_cleanup
-
