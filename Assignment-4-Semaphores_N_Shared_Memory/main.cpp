@@ -12,6 +12,10 @@
 
 using namespace std;
 
+//the target to be factored
+const int U = 827395609
+const int V = 962094883
+
 const int MAXCHAR = 10;
 const int BUFFSIZE = 3;
 enum {PUT_ITEM, TAKE_ITEM}; // set up names of my 2 semaphores
@@ -29,6 +33,7 @@ int main(){
 	sem.V(PUT_ITEM);
 	sem.V(PUT_ITEM); // PUT_ITEM = 3 
 
+    fork()
 
     exit(0);
 }
