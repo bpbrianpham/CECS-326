@@ -33,7 +33,31 @@ int main(){
 	sem.V(PUT_ITEM);
 	sem.V(PUT_ITEM); // PUT_ITEM = 3 
 
-    fork()
+    child1 = fork();
+	if (child1){ //parent
+		//Todo
+	}
+	else{ 
+		child2 = fork();
+		if(child2){ //child 1
+			//Todo
+		}
+		else{
+			child3 = fork();
+			if(child3){ //child 2
+				//Todo
+			}
+			else{
+				child4 = fork();
+				if(child4){ //child 3
+					//Todo
+				}
+				else{
+					//child 4 - Todo
+				}
+			}
+		}
+	}
 
     exit(0);
 }
