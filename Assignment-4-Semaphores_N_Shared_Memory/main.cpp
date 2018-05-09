@@ -32,24 +32,19 @@ int main(){
 	int arr[4];
 
 	child = fork();
-	srand(time(NULL));
 	if (child){//parent
 		arr[0] = child;
 		child = fork();
-		srand(time(NULL));
 		if(child){
 			arr[1] = child;
 			child = fork();
-			srand(time(NULL));
 			if(child){
 				arr[2] = child;
 				child = fork();
-				srand(time(NULL));
 				if(child){
 					arr[3] = child;
 				}else{//child D
 					while(true){calculate(sem, shmBUF, "D");}
-					cout << "D is done." << endl;
 				}
 			}else{//child C
 				while(true){calculate(sem, shmBUF, "C");}
@@ -80,7 +75,7 @@ void calculate(SEMAPHORE &sem, bool *shmBUF, string childLetter) {
 			randNum = rand() % 100000;
 			cout << childLetter << " : " << randNum << " compare to " << V << endl;
 		}while(randNum % V == 0 || randNum < 100);
-		cout << childLetter << "is done." << endl;
+		cout << childLetter << " is done." << endl;
 		*shmBUF = true;
 	}else{
 		int U = 827395609;
@@ -89,10 +84,11 @@ void calculate(SEMAPHORE &sem, bool *shmBUF, string childLetter) {
 			randNum = rand() % 100000;
 			cout << childLetter << " : " << randNum << " compare to " << U << endl;
 		}while(randNum % U == 0 || randNum < 100);
-		cout << childLetter << "is done." << endl;
+		cout << childLetter << " is done." << endl;
 	}
 	
 	sem.P(UVsemaphore);
+	srand(time(NULL));
 } 
 
 void parent_cleanup (int arr[], SEMAPHORE &sem, int shmid) {
