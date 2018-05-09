@@ -13,7 +13,7 @@
 #include "semaphore.cpp"
 using namespace std;
 
-srand(time(NULL))
+srand(time(NULL));
 
 enum {UVsemaphore}; 
 
