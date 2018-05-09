@@ -32,15 +32,19 @@ int main(){
 	int arr[4];
 
 	child = fork();
-	if (child){
+	srand(time(NULL));
+	if (child){//parent
 		arr[0] = child;
 		child = fork();
+		srand(time(NULL));
 		if(child){
 			arr[1] = child;
 			child = fork();
+			srand(time(NULL));
 			if(child){
 				arr[2] = child;
 				child = fork();
+				srand(time(NULL));
 				if(child){
 					arr[3] = child;
 				}else{//child D
@@ -85,7 +89,7 @@ void calculate(SEMAPHORE &sem, bool *shmBUF, string childLetter) {
 			cout << childLetter << " : " << randNum << " compare to " << U << endl;
 		}while(randNum % U == 0 || randNum < 100);
 	}
-	srand(time(NULL));
+	
 	sem.P(UVsemaphore);
 } 
 
