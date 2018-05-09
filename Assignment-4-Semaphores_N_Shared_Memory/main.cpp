@@ -90,7 +90,7 @@ void parent_cleanup (int arr[], SEMAPHORE &sem, int shmid) {
 	do{		
 		cout << "Type '!wq' to quit. " << endl;
 		cin >> choice;
-	}while(choice.compare("!wq") == 0);
+	}while(choice.compare("!wq") != 0);
 
 	cout << "Killing all children." << endl;
 	for (int id = 0; id<4; id++){
