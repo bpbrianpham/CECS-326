@@ -86,8 +86,8 @@ void calculate(SEMAPHORE &sem, char *shmBUF) {
 } 
 
 void parent_cleanup (int arr[], SEMAPHORE &sem, int shmid) {
-	do{
-		string choice = "";
+	string choice = "";
+	do{		
 		cout << "Type '!wq' to quit. " << endl;
 		cin >> choice;
 	}while(choice.compare("!wq") == 0);
