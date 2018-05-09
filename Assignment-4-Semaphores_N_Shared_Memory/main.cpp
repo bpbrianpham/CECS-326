@@ -55,7 +55,7 @@ int main(){
 	}
 
 
-    parent_cleanup(arr, sem, schmid)
+    parent_cleanup(arr, sem, shmid)
 
     return 0;
 }
