@@ -79,7 +79,7 @@ void calculate(SEMAPHORE &sem, bool *shmBUF, string childLetter) {
 			randNum = rand() % 100000;
 			cout << childLetter << " : " << randNum << " compare to " << V << endl;
 		}while(randNum % V == 0 || randNum < 100);
-
+		cout << childLetter << "is done.";
 		*shmBUF = true;
 	}else{
 		int U = 827395609;
@@ -88,6 +88,7 @@ void calculate(SEMAPHORE &sem, bool *shmBUF, string childLetter) {
 			randNum = rand() % 100000;
 			cout << childLetter << " : " << randNum << " compare to " << U << endl;
 		}while(randNum % U == 0 || randNum < 100);
+		cout << childLetter << "is done.";
 	}
 	
 	sem.P(UVsemaphore);
