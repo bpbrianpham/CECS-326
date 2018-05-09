@@ -93,8 +93,8 @@ void parent_cleanup (int arr[], SEMAPHORE &sem, int shmid) {
 	}while(choice.compare("!wq") == 0);
 
 	cout << "Killing all children." << endl;
-	for (int id: arr){
-		kill(id,SIGTERM);
+	for (int id = 0; id<4; id++){
+		kill(arr[id],SIGTERM);
 	}
 	shmctl(shmid, IPC_RMID, NULL);
 	cout << "Ending the parent.\nExiting..." << endl;
