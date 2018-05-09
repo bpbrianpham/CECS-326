@@ -8,8 +8,12 @@
 #include <sys/wait.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#include <ctime>
+#include <cstdlib>
 #include "semaphore.cpp"
 using namespace std;
+
+srand(time(NULL))
 
 enum {UVsemaphore}; 
 
