@@ -13,7 +13,7 @@ using namespace std;
 
 enum {UVsemaphore}; 
 
-void calculate(SEMAPHORE &, bool *);
+void calculate(SEMAPHORE &, bool *, string);
 void parent_cleanup(int arr[], SEMAPHORE &, int schmid);
 
 int main(){
@@ -41,17 +41,17 @@ int main(){
 				child = fork();
 				if(child){
 					arr[3] = child;
-				}else{
-					while(true){calculate(sem, shmBUF);}
+				}else{//child D
+					while(true){calculate(sem, shmBUF, "D");}
 				}
-			}else{
-				while(true){calculate(sem, shmBUF);}
+			}else{//child C
+				while(true){calculate(sem, shmBUF, "C");}
 			}
-		}else{
-			while(true){calculate(sem, shmBUF);}
+		}else{//child B
+			while(true){calculate(sem, shmBUF, "B");}
 		}
-	}else{
-		while(true){calculate(sem, shmBUF);}
+	}else{//child A
+		while(true){calculate(sem, shmBUF, "A");}
 	}
 
 
@@ -60,7 +60,7 @@ int main(){
     return 0;
 }
 
-void calculate(SEMAPHORE &sem, bool *shmBUF) {
+void calculate(SEMAPHORE &sem, bool *shmBUF, string childLetter) {
 	int randNum;
 
 	bool v = *shmBUF;
@@ -70,7 +70,8 @@ void calculate(SEMAPHORE &sem, bool *shmBUF) {
 		*shmBUF = false;
 
 		do{
-			randNum = rand();
+			randNum = rand() % 100000;
+			cout << childLetter << " : " << randNum << endl;
 		}while(randNum % V == 0 || randNum < 100);
 
 		*shmBUF = true;
@@ -78,7 +79,8 @@ void calculate(SEMAPHORE &sem, bool *shmBUF) {
 		int U = 827395609;
 
 		do{
-			randNum = rand();
+			randNum = rand() % 100000;
+			cout << childLetter << " : " << randNum << endl;
 		}while(randNum % U == 0 || randNum < 100);
 	}
 
