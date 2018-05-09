@@ -70,16 +70,16 @@ void calculate(SEMAPHORE &sem, bool *shmBUF) {
 		*shmBUF = false;
 
 		do{
-			randNum = rand() % 100;
-		}while(randNum % V == 0);
+			randNum = rand();
+		}while(randNum % V == 0 || randNum < 100);
 
 		*shmBUF = true;
 	}else{
 		int U = 827395609;
 
 		do{
-			randNum = rand() % 100;
-		}while(randNum % U == 0);
+			randNum = rand();
+		}while(randNum % U == 0 || randNum < 100);
 	}
 
 	sem.P(UVsemaphore);
