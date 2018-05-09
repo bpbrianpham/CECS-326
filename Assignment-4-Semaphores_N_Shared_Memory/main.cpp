@@ -63,7 +63,6 @@ int main(){
 }
 
 void calculate(SEMAPHORE &sem, bool *shmBUF, string childLetter) {
-	srand(time(NULL));
 	int randNum;
 
 	bool v = *shmBUF;
@@ -74,7 +73,7 @@ void calculate(SEMAPHORE &sem, bool *shmBUF, string childLetter) {
 
 		do{
 			randNum = rand() % 100000;
-			cout << childLetter << " : " << randNum << endl;
+			cout << childLetter << " : " << randNum << " compare to " << V << endl;
 		}while(randNum % V == 0 || randNum < 100);
 
 		*shmBUF = true;
@@ -83,10 +82,10 @@ void calculate(SEMAPHORE &sem, bool *shmBUF, string childLetter) {
 
 		do{
 			randNum = rand() % 100000;
-			cout << childLetter << " : " << randNum << endl;
+			cout << childLetter << " : " << randNum << " compare to " << U << endl;
 		}while(randNum % U == 0 || randNum < 100);
 	}
-
+	srand(time(NULL));
 	sem.P(UVsemaphore);
 } 
 
