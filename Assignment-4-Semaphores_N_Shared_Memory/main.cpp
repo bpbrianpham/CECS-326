@@ -44,16 +44,16 @@ int main(){
 				if(child){
 					arr[3] = child;
 				}else{//child D
-					while(true){calculate(sem, shmBUF, "D");}
+					calculate(sem, shmBUF, "D");
 				}
 			}else{//child C
-				while(true){calculate(sem, shmBUF, "C");}
+				calculate(sem, shmBUF, "C");
 			}
 		}else{//child B
-			while(true){calculate(sem, shmBUF, "B");}
+			calculate(sem, shmBUF, "B");
 		}
 	}else{//child A
-		while(true){calculate(sem, shmBUF, "A");}
+		calculate(sem, shmBUF, "A");
 	}
 
 
