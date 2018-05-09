@@ -31,18 +31,11 @@ int main(){
 
 	int arr[4];
 
-	child = fork();
-	if (child){//parent
-		arr[0] = child;
-		child = fork();
-		if(child){
-			arr[1] = child;
-			child = fork();
-			if(child){
-				arr[2] = child;
-				child = fork();
-				if(child){
-					arr[3] = child;
+	if ((arr[0] = fork())){//parent
+		if((arr[1] = fork())){
+			if((arr[2] = fork())){
+				if((arr[3] = fork())){
+					parent_cleanup(arr, sem, shmid);
 				}else{//child D
 					calculate(sem, shmBUF, "D");
 				}
@@ -55,9 +48,6 @@ int main(){
 	}else{//child A
 		calculate(sem, shmBUF, "A");
 	}
-
-
-    parent_cleanup(arr, sem, shmid);
 
     return 0;
 }
