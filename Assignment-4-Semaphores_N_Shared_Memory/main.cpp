@@ -66,7 +66,8 @@ void calculate(SEMAPHORE &sem, bool *shmBUF, string childLetter) {
 	int randNum;
 
 	bool v = *shmBUF;
-
+	sem.P(UVsemaphore);
+	srand(time(NULL));
 	if(v){
 		int V = 962094883;
 		*shmBUF = false;
@@ -86,9 +87,7 @@ void calculate(SEMAPHORE &sem, bool *shmBUF, string childLetter) {
 		}while(randNum % U == 0 || randNum < 100);
 		cout << childLetter << " is done." << endl;
 	}
-	
-	sem.P(UVsemaphore);
-	srand(time(NULL));
+	sem.V(UVsemaphore);	
 } 
 
 void parent_cleanup (int arr[], SEMAPHORE &sem, int shmid) {
