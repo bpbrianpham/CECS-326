@@ -8,92 +8,96 @@
 #include <sys/wait.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
-#include "semaphore.h"
-
+#include "semaphore.cpp"
 using namespace std;
 
-//the target to be factored
-const int U = 827395609
-const int V = 962094883
+enum {UVsemaphore}; 
 
-const int MAXCHAR = 10;
-const int BUFFSIZE = 3;
-enum {PUT_ITEM, TAKE_ITEM}; // set up names of my 2 semaphores
-
-void producer_proc(SEMAPHORE &, char *);
-void parent_cleanup(SEMAPHORE &, int);
-void consumer_proc(SEMAPHORE &, char *);
+void calculate(SEMAPHORE &, bool *);
+void parent_cleanup(int arr[], SEMAPHORE &, int schmid);
 
 int main(){
-	int shmid;
-	char *shmBUF;
+	int shmid = shmget(IPC_PRIVATE, sizeof(bool), PERMS);
+	bool *shmBUF = (bool *)shmat(shmid, 0, SHM_RND);
+	*shmBUF = true;
 
-	SEMAPHORE sem(2); // Constructing an Object with 2 semaphores (sem are set to zero when initialize)
-	sem.V(PUT_ITEM); // Incrementing each PUT_ITEM by 1
-	sem.V(PUT_ITEM);
-	sem.V(PUT_ITEM); // PUT_ITEM = 3 
+	pid_t child;
 
-    child1 = fork();
-	if (child1){ //parent
-		//Todo
-	}
-	else{ 
-		child2 = fork();
-		if(child2){ //child 1
-			//Todo
-		}
-		else{
-			child3 = fork();
-			if(child3){ //child 2
-				//Todo
-			}
-			else{
-				child4 = fork();
-				if(child4){ //child 3
-					//Todo
+	SEMAPHORE sem(1); 
+	sem.V(UVsemaphore); 
+	sem.V(UVsemaphore);
+
+	int arr[4];
+
+	child = fork();
+	if (child){
+		arr[0] = child;
+		child = fork();
+		if(child){
+			arr[1] = child;
+			child = fork();
+			if(child){
+				arr[2] = child;
+				child = fork();
+				if(child){
+					arr[3] = child;
+				}else{
+					while(true){calculate(sem, shmBUF);}
 				}
-				else{
-					//child 4 - Todo
-				}
+			}else{
+				while(true){calculate(sem, shmBUF);}
 			}
+		}else{
+			while(true){calculate(sem, shmBUF);}
 		}
+	}else{
+		while(true){calculate(sem, shmBUF);}
 	}
 
-    exit(0);
+
+    parent_cleanup(arr, sem, schmid)
+
+    return 0;
 }
 
-void consumer_proc(SEMAPHORE &sem, char *shmBUF) {
-	char tmp;
+void calculate(SEMAPHORE &sem, char *shmBUF) {
+	int randNum;
 
-	for(int k=0; k<MAXCHAR; k++){
-		sem.P(TAKE_ITEM);
-		tmp = *(shmBUF+k%BUFFSIZE); // shmBUF = shared memeory & k%BUFFSIZE = accese which memory (K = 0 --> 9) 
-		sem.V(PUT_ITEM);			// However it is % of BUFFSIZE so K = 0,1,2,0,1,2,0,1,2.....
-		cout << "(" << getpid() << ")  " 
-				<< "buf[" << k%BUFFSIZE << "] "
-				<< tmp << endl; // <--- this endl is important becasue it will flush buffer
+	bool v = *shmBUF;
+
+	if(v){
+		int V = 962094883;
+		*shmBUF = false;
+
+		do{
+			randNum = rand() % 100;
+		}while(randNum % V == 0);
+
+		*shmBUF = true;
+	}else{
+		int U = 827395609;
+
+		do{
+			randNum = rand() % 100;
+		}while(randNum % U == 0);
 	}
-} // child_proc
 
-void producer_proc(SEMAPHORE &sem, char *shmBUF) {
+	sem.P(UVsemaphore);
+} 
 
-	char data[128];
-	cout << "(" << getpid() << ")  Please enter a string --> ";
-	cin.getline(data, 127);
+void parent_cleanup (int arr[], SEMAPHORE &sem, int shmid) {
+	do{
+		string choice;
+		cout << "Type '!wq' to quit. " << endl;
+		cin << choice;
+	}while(choice.compare("!wq") == 0)
 
-	char input;
-	for(int k=0; k<MAXCHAR; k++){
-		input = data[k];
-		sem.P(PUT_ITEM);
-		*(shmBUF+(k%BUFFSIZE)) = input;
-		sem.V(TAKE_ITEM);
+	cout << "Killing all children." << endl;
+	for (int id: arr){
+		kill(id,SIGTERM);
 	}
-} // parent_proc
-
-void parent_cleanup (SEMAPHORE &sem, int shmid) {
-
-	int status;			/* child status */
-	wait(0);	/* wait for child to exit */
-	shmctl(shmid, IPC_RMID, NULL);	/* cleaning up */
+	shmctl(shmid, IPC_RMID, NULL);
+	cout << "Ending the parent.\nExiting..." << endl;
 	sem.remove();
+	exit(0);
 } // parent_cleanup
