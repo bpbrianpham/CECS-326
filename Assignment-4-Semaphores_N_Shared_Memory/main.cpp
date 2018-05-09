@@ -60,7 +60,7 @@ int main(){
     return 0;
 }
 
-void calculate(SEMAPHORE &sem, char *shmBUF) {
+void calculate(SEMAPHORE &sem, bool *shmBUF) {
 	int randNum;
 
 	bool v = *shmBUF;
