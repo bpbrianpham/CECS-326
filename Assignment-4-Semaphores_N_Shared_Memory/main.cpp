@@ -87,10 +87,10 @@ void calculate(SEMAPHORE &sem, char *shmBUF) {
 
 void parent_cleanup (int arr[], SEMAPHORE &sem, int shmid) {
 	do{
-		string choice;
+		string choice = "";
 		cout << "Type '!wq' to quit. " << endl;
-		cin << choice;
-	}while(choice.compare("!wq") == 0)
+		cin >> choice;
+	}while(choice.compare("!wq") == 0);
 
 	cout << "Killing all children." << endl;
 	for (int id: arr){
