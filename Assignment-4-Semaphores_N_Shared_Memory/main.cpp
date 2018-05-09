@@ -13,8 +13,6 @@
 #include "semaphore.cpp"
 using namespace std;
 
-srand(time(NULL));
-
 enum {UVsemaphore}; 
 
 void calculate(SEMAPHORE &, bool *, string);
@@ -65,6 +63,7 @@ int main(){
 }
 
 void calculate(SEMAPHORE &sem, bool *shmBUF, string childLetter) {
+	srand(time(NULL));
 	int randNum;
 
 	bool v = *shmBUF;
