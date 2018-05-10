@@ -53,31 +53,33 @@ int main(){
 }
 
 void calculate(SEMAPHORE &sem, bool *shmBUF, string childLetter) {
-	int randNum;
+	while(true){
+		int randNum;
 
-	bool v = *shmBUF;
-	sem.P(UVsemaphore);
-	srand(time(NULL));
-	if(v){
-		int V = 962094883;
-		*shmBUF = false;
+		bool v = *shmBUF;
+		sem.P(UVsemaphore);
+		srand(time(NULL));
+		if(v){
+			int V = 962094883;
+			*shmBUF = false;
 
-		do{
-			randNum = rand() % 100000;
-			cout << childLetter << " : " << randNum << " compare to " << V << endl;
-		}while(randNum % V != 0 || randNum >= 100);
-		cout << childLetter << " is done." << endl;
-		*shmBUF = true;
-	}else{
-		int U = 827395609;
+			do{
+				randNum = rand() % 100000;
+				cout << childLetter << " : " << randNum << " compare to " << V << endl;
+			}while(randNum % V != 0 || randNum >= 100);
+			cout << childLetter << " is done." << endl;
+			*shmBUF = true;
+		}else{
+			int U = 827395609;
 
-		do{
-			randNum = rand() % 100000;
-			cout << childLetter << " : " << randNum << " compare to " << U << endl;
-		}while(randNum % U != 0 || randNum >= 100);
-		cout << childLetter << " is done." << endl;
+			do{
+				randNum = rand() % 100000;
+				cout << childLetter << " : " << randNum << " compare to " << U << endl;
+			}while(randNum % U != 0 || randNum >= 100);
+			cout << childLetter << " is done." << endl;
+		}
+		sem.V(UVsemaphore);	
 	}
-	sem.V(UVsemaphore);	
 } 
 
 void parent_cleanup (int arr[], SEMAPHORE &sem, int shmid) {
