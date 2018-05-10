@@ -80,7 +80,7 @@ void calculate(SEMAPHORE &sem, bool *shmBUF, string childLetter) {
 		}
 		sem.V(UVsemaphore);	
 	}
-} 
+} //critical section
 
 void parent_cleanup (int arr[], SEMAPHORE &sem, int shmid) {
 	string choice = "";
